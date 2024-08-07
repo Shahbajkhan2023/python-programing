@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        .alert {
+            color: green;
+        }
+        .alert.error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Feedback Form</h2>
+    
+    {% if messages %}
+        <div id="messages">
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Automatically hide the messages after 10 seconds
+        setTimeout(() => {
+            const messages = document.getElementById('messages');
+            if (messages) {
+                messages.style.display = 'none';
+            }
+        }, 10000);
+    </script>
+</body>
+</html>
