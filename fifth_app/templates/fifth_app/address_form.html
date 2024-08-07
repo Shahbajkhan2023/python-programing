@@ -1,0 +1,13 @@
+<!-- templates/address_form.html -->
+{% extends "base.html" %}
+
+{% block title %}Address Form{% endblock %}
+
+{% block content %}
+    <h1>Enter Your Address</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        {% include "fifth_app/address_fields.html" %}
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
